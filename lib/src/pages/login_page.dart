@@ -68,7 +68,9 @@ class LoginPage extends StatelessWidget {
           child: Icon(Icons.check),
           color: Colors.blue,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: snapshot.hasError ? null : () {
+                  print('Submit button clicked.');
+                }
         );
       },
     );
