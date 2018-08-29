@@ -24,7 +24,10 @@ class Bloc extends Object with Validator {
 
   // submit method
   submit() {
+    final validEmail = this._emailStreamController.value;
+    final validPassword = this._passwordStreamController.value;
 
+    print('Submited Email: $validEmail Password: $validPassword');
   }
 
 
