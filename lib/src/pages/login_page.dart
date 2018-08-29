@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
           },
           obscureText: true,
           decoration: InputDecoration(
-            icon: Icon(Icons.email),
+            icon: Icon(Icons.lock),
             labelText: 'Password',
             hintText: 'password',
             errorText: snapshot.error,
