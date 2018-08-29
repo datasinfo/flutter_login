@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
           emailField(bloc),
           passwordField(bloc),
           Container(margin: EdgeInsets.only(bottom: 20.0)),
-          submitButton(),
+          submitButton(bloc),
         ],
       ),
     );
@@ -60,12 +60,17 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget submitButton() {
-    return RaisedButton(
-      child: Icon(Icons.check),
-      color: Colors.blue,
-      textColor: Colors.white,
-      onPressed: () {},
+  Widget submitButton(Bloc bloc) {
+    return StreamBuilder(
+      stream: bloc.submitValid,
+      builder: (context, snapshot) {
+        return RaisedButton(
+          child: Icon(Icons.check),
+          color: Colors.blue,
+          textColor: Colors.white,
+          onPressed: () {},
+        );
+      },
     );
   }
 }
