@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "829247948190",
+    "firebase_url": "https://acc-shop.firebaseio.com",
+    "project_id": "acc-shop",
+    "storage_bucket": "acc-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829247948190:android:cc6eb3d69439a31e",
+        "android_client_info": {
+          "package_name": "com.loginapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829247948190-b108v446h96rea0t59dgarc0j8hu6vgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBSBxZi4WP1ZuZCfP-Qxg8drENzEUStZY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
