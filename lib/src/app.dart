@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import './blocs/provider.dart';
 import 'pages/login_page.dart';
 
 class App extends StatelessWidget {
   @override
-    Widget build(BuildContext context) {
-      // TODO: implement build
-      return MaterialApp(
+  Widget build(BuildContext context) {
+    return Provider(
+      child: MaterialApp(
         title: 'Login',
         home: Scaffold(
           body: LoginPage(),
         ),
-      );
-    }
+      ),
+    );
+  }
 }
