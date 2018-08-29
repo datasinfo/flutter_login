@@ -3,8 +3,11 @@ import 'package:rxdart/rxdart.dart';
 import '../validators/validator.dart';
 
 class Bloc extends Object with Validator {
-  final _emailStreamController = StreamController<String>.broadcast();
-  final _passwordStreamController = StreamController<String>.broadcast();
+  // final _emailStreamController = StreamController<String>.broadcast();
+  // final _passwordStreamController = StreamController<String>.broadcast();
+  // replace the StreamController<String>.broadcast() to BehaviorSubject<String> which aleady has boradcast in default
+  final _emailStreamController = BehaviorSubject<String>();
+  final _passwordStreamController = BehaviorSubject<String>();
 
   // add data to stream
   Stream<String> get emailStream =>
@@ -21,7 +24,7 @@ class Bloc extends Object with Validator {
 
   // submit method
   submit() {
-    
+
   }
 
 
