@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import '../blocs/bloc.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -19,24 +19,42 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget emailField() {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-          icon: Icon(Icons.email),
-          labelText: 'Email',
-          hintText: 'abc@gmail.com'),
+    return StreamBuilder(
+      stream: bloc.emailStream,
+      builder: (context, snapshot) {
+        return TextField(
+          onChanged: (value) {
+            bloc.emailChangeSink(value);
+          },
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon(Icons.email),
+            labelText: 'Email',
+            hintText: 'abc@gmail.com',
+            errorText: snapshot.error,
+          ),
+        );
+      },
     );
   }
 
   Widget passwordField() {
-    return TextField(
-      obscureText: true,
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        icon: Icon(Icons.email),
-        labelText: 'Password',
-        hintText: 'password',
-      ),
+    return StreamBuilder(
+      stream: bloc.passwordStream,
+      builder: (context, snapshot) {
+        return TextField(
+          onChanged: (value) {
+            bloc.passwordChangeSink(value);
+          },
+          obscureText: true,
+          decoration: InputDecoration(
+            icon: Icon(Icons.email),
+            labelText: 'Password',
+            hintText: 'password',
+            errorText: snapshot.error,
+          ),
+        );
+      },
     );
   }
 

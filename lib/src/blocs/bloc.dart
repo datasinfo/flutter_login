@@ -10,11 +10,11 @@ class Bloc extends Object with Validator {
   Stream<String> get emailStream => this._emailStreamController
   .stream.transform(validateEmail);
   Stream<String> get passwordStream => this._passwordStreamController
-  .stream.transform(validateEmail);
+  .stream.transform(validatePassword);
 
   // retrieve data from stream
   Function(String) get emailChangeSink => this._emailStreamController.sink.add;
-  Function(String) get passwordChangeSink => this._emailStreamController.sink.add;
+  Function(String) get passwordChangeSink => this._passwordStreamController.sink.add;
 
   dispose() {
     _emailStreamController.close();
@@ -22,3 +22,5 @@ class Bloc extends Object with Validator {
   }
 
 }
+
+final bloc = Bloc();
