@@ -22,6 +22,9 @@ dependencies:
 
   rxdart: ^0.18.1
 
+  # add firebase to dart
+  firebase: ^5.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
