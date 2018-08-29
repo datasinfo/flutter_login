@@ -5,13 +5,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class Bloc extends Object with Validator {
   // final _emailStreamController = StreamController<String>.broadcast();
   // final _passwordStreamController = StreamController<String>.broadcast();
   // replace the StreamController<String>.broadcast() to BehaviorSubject<String> which aleady has boradcast in default
   final _emailStreamController = BehaviorSubject<String>();
   final _passwordStreamController = BehaviorSubject<String>();
+
+  // firebase auth instance
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // add data to stream
   Stream<String> get emailStream =>
@@ -27,10 +29,20 @@ class Bloc extends Object with Validator {
       this._passwordStreamController.sink.add;
 
   // submit method
-  submit() {
+  submit() async {
     initializeFirebase();
     final validEmail = this._emailStreamController.value;
     final validPassword = this._passwordStreamController.value;
+
+    final FirebaseUser user = await _auth.signInWithEmailAndPassword(
+        email: validEmail, password: validPassword);
+    assert(user != null);
+    assert(await user.getIdToken() != null);
+
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+
+    print('signInEmail succeeded: $user');
 
     print('Submited Email: $validEmail Password: $validPassword');
   }
@@ -41,7 +53,8 @@ class Bloc extends Object with Validator {
       options: const FirebaseOptions(
         googleAppID: '1:829247948190:android:cc6eb3d69439a31e',
         gcmSenderID: '829247948190',
-        clientID: "829247948190-b108v446h96rea0t59dgarc0j8hu6vgj.apps.googleusercontent.com",
+        clientID:
+            "829247948190-b108v446h96rea0t59dgarc0j8hu6vgj.apps.googleusercontent.com",
         apiKey: 'AIzaSyBNcwup4L4Yvi0sgT0l6SjT9lgO0-8PyWw',
         databaseURL: "https://acc-shop.firebaseio.com",
         storageBucket: "acc-shop.appspot.com",
@@ -49,7 +62,7 @@ class Bloc extends Object with Validator {
       ),
     );
     // final Firestore firestore = new Firestore(app: app);
-    // final FirebaseAuth _auth = FirebaseAuth.instance;
+    //
 
     // final FirebaseUser user = await _auth.signInWithEmailAndPassword(
 
